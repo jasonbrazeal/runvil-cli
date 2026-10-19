@@ -1,0 +1,42 @@
+[package]
+name = "runvil-cli"
+description = "Run any runvil prompt from the command line through the gateway, with web and MCP tools"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.89"
+license = "BSL-1.0"
+publish = false
+
+[[bin]]
+name = "runvil"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1.0.104"
+clap = { version = "4.6.7", features = ["derive"] }
+# The Harness and the crates a Host plugs into it, from a runvil
+# checkout beside this repository (../runvil).
+harness = { path = "../runvil/crates/harness" }
+harness-gateway-client = { path = "../runvil/crates/harness-gateway-client" }
+plugin-mcp = { path = "../runvil/crates/plugin-mcp" }
+plugin-web = { path = "../runvil/crates/plugin-web" }
+runvil-plugin = { path = "../runvil/crates/runvil-plugin" }
+serde_json = "1.0.151"
+tokio = { version = "1.53.2", features = ["rt-multi-thread", "macros", "signal", "fs", "time"] }
+
+[dev-dependencies]
+tempfile = "3.27.0"
+
+[lints.rust]
+unsafe_code = "forbid"
+missing_debug_implementations = "warn"
+unreachable_pub = "warn"
+future_incompatible = { level = "warn", priority = -1 }
+
+[lints.clippy]
+all = { level = "deny", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+unwrap_used = "deny"
+expect_used = "deny"
+dbg_macro = "warn"
+doc_markdown = "allow"

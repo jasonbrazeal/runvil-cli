@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "wg21-papers": {
+      "url": "http://127.0.0.1:8003/papers/mcp",
+      "headers": {
+        "Authorization": "Bearer ${env:PAPER_MCP_TOKEN}"
+      }
+    }
+  }
+}
